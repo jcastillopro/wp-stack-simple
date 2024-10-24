@@ -3,7 +3,7 @@ FROM wordpress:php8.1-fpm
 COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
 
 #install nginx
-RUN apt-get update && apt-get install nginx
+RUN apt-get update && apt-get install -y nginx
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
 RUN systemctl restart nginx
