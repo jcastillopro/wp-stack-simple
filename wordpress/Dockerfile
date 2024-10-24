@@ -14,4 +14,5 @@ RUN systemctl enable redis-server && redis-server /usr/local/etc/redis/redis.con
 RUN apt-get update && apt-get install -y nginx
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
-RUN systemctl restart nginx && systemctl status nginx
+# Run the Nginx server
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
