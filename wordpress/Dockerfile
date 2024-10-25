@@ -9,9 +9,3 @@ RUN apt-get install -y redis redis-tools && pecl install redis && docker-php-ext
 COPY ./redis.conf /usr/local/etc/redis/redis.conf
 
 RUN systemctl enable redis-server && redis-server /usr/local/etc/redis/redis.conf --save 60 1 --loglevel warning --maxmemory 128mb --maxmemory-policy allkeys-lru && ps aux | grep redis-server
-
-#install nginx
-RUN apt-get update && apt-get install -y nginx
-COPY ./default.conf /etc/nginx/conf.d/default.conf
-COPY ./nginx.conf /etc/nginx/nginx.conf
-CMD ["nginx", "-g", "daemon on;"]
